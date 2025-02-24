@@ -3,7 +3,9 @@
   <p style="color: red;">{{error}}</p>
 </div>
 <div *ngIf="flights">
-  <pre>{{ flights | json }}</pre>
+  <ul>
+    <li *ngFor="let flight of flights">{{ flight.id }} | {{ flight.destination }} | {{ flight.flightKey }}</li>
+  </ul>
 </div>
 <div *ngIf="!flights && !error">
   <p>Podaci se ucitavaju</p>
