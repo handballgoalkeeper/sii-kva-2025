@@ -1,12 +1,32 @@
-<div *ngIf="error">
-  <h3>Oops, an error occurred! :(</h3>
-  <p style="color: red;">{{error}}</p>
+<div *ngIf="error" class="d-flex justify-content-center h-100">
+  <mat-card appearance="outlined" class="w-50 h-50 text-center">
+    <mat-card-content class="d-flex align-items-center justify-content-center flex-column h-100">
+      <h1>Oops, an error occurred!</h1>
+      <p style="color: red;">{{error}}</p>
+    </mat-card-content>
+  </mat-card>
 </div>
-<div *ngIf="flights">
-  <ul>
-    <li *ngFor="let flight of flights">{{ flight.id }} | {{ flight.destination }} | {{ flight.flightKey }}</li>
-  </ul>
+<div *ngIf="flights" class="container d-flex gap-3 justify-content-center flex-wrap">
+  <mat-card class="example-card w-25" appearance="outlined" *ngFor="let flight of flights">
+    <img mat-card-image [src]="generateDestinationImage(flight.destination)" [alt]="flight.destination">
+    <mat-card-content>
+      <h1>{{ flight.destination }}</h1>
+      <p>Scheduled at: {{ flight.scheduledAt | date:'medium' }}</p>
+      <p>Flight number: {{ flight.flightNumber}}</p>
+      <p>Plane model: {{ flight.plane }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button><i class="bi bi-box-arrow-up-right"></i> Details</button>
+      <button mat-button><i class="bi bi-cart"></i> Book now</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
-<div *ngIf="!flights && !error">
-  <p>Podaci se ucitavaju</p>
+<div *ngIf="!flights && !error" class="d-flex align-items-center justify-content-center">
+  <mat-card appearance="outlined" class="w-75 text-center">
+    <mat-card-content>
+      <h1>Please wait!</h1>
+      <p>We are processing your data...</p>
+      <span class="loader"></span>
+    </mat-card-content>
+  </mat-card>
 </div>

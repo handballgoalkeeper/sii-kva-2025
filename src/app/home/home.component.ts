@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {FlightService} from '../../services/flight.service';
-import {NgForOf, NgIf} from '@angular/common';
+import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {AxiosError} from 'axios';
 import {FlightModel} from '../../models/flight.model';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
-  imports: [NgIf, NgForOf],
+  imports: [NgIf, NgForOf, MatCardModule, MatButtonModule, DatePipe],
   templateUrl: './home.component.html',
   standalone: true,
   styleUrl: './home.component.css'
@@ -16,8 +18,12 @@ export class HomeComponent {
   public error: string | null = null;
 
   constructor() {
-    FlightService.findAll().then((response) => {
+    FlightService.findAll(0, 10).then((response) => {
       this.flights = response.data.content;
     }).catch((error: AxiosError) => this.error = `${error.code}: ${error.message}`);
+  }
+
+  public generateDestinationImage(dest: string) {
+    return `https://img.pequla.com/destination/${dest.split(' ')[0].toLowerCase()}.jpg`
   }
 }
