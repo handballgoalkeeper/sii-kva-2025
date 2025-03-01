@@ -1,0 +1,35 @@
+<div class="container mt-5" *ngIf="dataSource">
+  <h1>Search</h1>
+  <table mat-table [dataSource]="dataSource" >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> <i class="bi bi-hash"></i> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> <i class="bi bi-tag"></i> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="countryOfOrigin">
+      <th mat-header-cell *matHeaderCellDef> <i class="bi bi-pin-map"></i> Country of origin </th>
+      <td mat-cell *matCellDef="let element"> {{element.countryOfOrigin}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="website">
+      <th mat-header-cell *matHeaderCellDef> <i class="bi bi-globe"></i> Website </th>
+      <td mat-cell *matCellDef="let element"><a [href]="element.website" target="_blank">{{ element.website }} </a></td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> <i class="bi bi-"></i> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-button [href]="element.website" class="none"><i class="bi bi-box-arrow-up-right"></i> Visit website</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<app-loading [isVisible]="!dataSource" />

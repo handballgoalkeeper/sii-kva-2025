@@ -5,10 +5,11 @@ import {AxiosError} from 'axios';
 import {FlightModel} from '../../models/flight.model';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {LoadingComponent} from '../loading/loading.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NgIf, NgForOf, MatCardModule, MatButtonModule, DatePipe],
+  imports: [NgIf, NgForOf, MatCardModule, MatButtonModule, DatePipe, LoadingComponent],
   templateUrl: './home.component.html',
   standalone: true,
   styleUrl: './home.component.css'

@@ -4,10 +4,11 @@ import {FlightModel} from '../../models/flight.model';
 import {DatePipe, NgIf} from '@angular/common';
 import {FlightService} from '../../services/flight.service';
 import {MatButton} from '@angular/material/button';
+import {LoadingComponent} from '../loading/loading.component';
 
 @Component({
   selector: 'app-search',
-  imports: [MatTableModule, NgIf, DatePipe, MatButton],
+  imports: [MatTableModule, NgIf, DatePipe, MatButton, LoadingComponent],
   templateUrl: './search.component.html',
   standalone: true,
   styleUrl: './search.component.css'

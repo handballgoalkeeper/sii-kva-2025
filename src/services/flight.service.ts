@@ -13,7 +13,7 @@ const client = axios.create({
 export class FlightService {
   static async findAll(page: number = 0, size: number = 10) {
     return client.request({
-      url: '/flightt',
+      url: '/flight',
       method: 'GET',
       params: {
         'page': page,
